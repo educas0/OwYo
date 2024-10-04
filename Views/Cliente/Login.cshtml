@@ -1,0 +1,92 @@
+﻿@{
+    Layout = null;
+}
+
+@model Cliente_Login;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Login de OwYO</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="~/images/cabecera.png">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h3><strong>Acceso a OwYO.com</strong></h3>
+                <p>Para poder disfrutar de algunos de nuestros servicios, debes estar registrado. Registrarse en OwYO.com es rapido y facil y GRATIS!</p>
+            </div>
+        </div>
+
+        <!--
+        div para mostrar mensajes de error personalizados del server como p.e
+        fallos a la hora de comprobar credenciales en las tablas...
+        poner en atributo asp-validation-summary="ModelOnly"
+        si pones: asp-validation-summary="All" se mostraran todos (personalizados y errores
+                                                    en propiedades del modelo)
+        -->
+
+        <div class="row">
+            <div class="col">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-4">
+                <div>
+                    <p><h3>Identificate con...</h3></p><br />
+                    <a href="">
+                        <img src="~/images/boton_Google.png" />
+                    </a>
+                    <small>o bien con tu usuario de OwYO</small>
+                </div>
+
+                <form id="formlogin" method="post" asp-controller="Cliente" asp-action="Login" >
+                    <div class="form-group">
+                        <label for="nick"><strong>Nickname:</strong></label>
+                        <input id="nick" type="text" asp-for="@Model.Login" class="form-control" placeholder="inicia sesion con tu Nickname" />
+                        <span class="text-danger" asp-validation-for="@Model.Login"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><strong>Contraseña:</strong></label>
+                        <input id="password" type="password" asp-for="@Model.Password" class="form-control" placeholder="introduce tu password" />
+                        <span class="text-danger" asp-validation-for="@Model.Password"></span>
+                    </div>
+
+                    <!--
+                   cuando hago click en enlace q simula boton provoco submit del formulario
+                    OJO!! no es conveniente poner sentencias javascript dentro de tags html
+                -->
+                    <a href="javascript:;" onclick="document.forms['formlogin'].submit()" class="btn btn-primary">
+                        <img src="~/images/BotonLoginUsuario.png" />
+                    </a>
+
+                </form>
+
+
+            </div>
+
+            <div class="col-8">
+                <img src="~/images/formLogin.png" />
+                <a href="https://localhost:44337/Cliente/Registro">
+                    <img src="~/images/BotonRegistrarUsuario.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
